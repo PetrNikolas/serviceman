@@ -71,7 +71,7 @@ app.post('/contact', function (req, res) {
 // Routes
 //------------------------------------------------------------------------------
 app.get('/', function (req, res) {
-  res.send('Spaceti API - Serviceman!')
+  res.send('Serviceman!')
 })
 
 
