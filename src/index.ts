@@ -59,7 +59,6 @@ server.listen(port, (err: any) => {
   if (err) {
     return console.log(err);
   }
-
   // Success server running
   return console.log(`Server running at https://127.0.0.1:${port}`);
 });
