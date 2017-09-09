@@ -3,6 +3,7 @@
 //------------------------------------------------------------------------------
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as logger from 'morgan';
 import * as cors from 'cors';
 import * as nodemailer from 'nodemailer';
 const ses = require('nodemailer-ses-transport');
@@ -12,7 +13,7 @@ const ses = require('nodemailer-ses-transport');
 // New Express server config
 //------------------------------------------------------------------------------
 class App {
-  public express: any;
+  public express: express.Application;
   public bodyParser: any;
   public cors: any;
   public nodemailer: any;
@@ -21,15 +22,22 @@ class App {
   // Create a new express server
   constructor () {
     this.express = express();
+    this.middleware();
     this.cors = cors();
     this.bodyParser = bodyParser.json();
-    this.mountRoutes();
+    this.routes();
+  }
+
+  // Configure Express middleware
+  private middleware(): void {
+    this.express.use(logger('dev'));
+    this.express.use(bodyParser.json());
+    this.express.use(bodyParser.urlencoded({ extended: false }));
   }
 
   // Create a new routes
-  private mountRoutes (): void {
+  private routes (): void {
     const router = express.Router();
-
     // Contact form
     router.post('/contact', (req, res) => {
         // Options for mail
@@ -38,7 +46,6 @@ class App {
             secretAccessKey: 'YOUR_AMAZON_SECRET_KEY',
             region: 'YOUR_AMAZON_REGION'
         }));
-
         const mailOpts = {
             from: 'ENTER EMAIL ADRESS',
             to: 'ENTER YOUR EMAIL ADRESS',
@@ -65,10 +72,7 @@ class App {
 
     // Default route
     router.get('/', (req, res) => {
-      /*res.json({
-        message: 'Serviceman!'
-      });*/
-      res.send('Serviceman!');
+      res.send('Serviceman API!');
     });
     this.express.use('/', router);
   }

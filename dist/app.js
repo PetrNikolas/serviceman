@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //------------------------------------------------------------------------------
 const express = require("express");
 const bodyParser = require("body-parser");
+const logger = require("morgan");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const ses = require('nodemailer-ses-transport');
@@ -15,12 +16,19 @@ class App {
     // Create a new express server
     constructor() {
         this.express = express();
+        this.middleware();
         this.cors = cors();
         this.bodyParser = bodyParser.json();
-        this.mountRoutes();
+        this.routes();
+    }
+    // Configure Express middleware
+    middleware() {
+        this.express.use(logger('dev'));
+        this.express.use(bodyParser.json());
+        this.express.use(bodyParser.urlencoded({ extended: false }));
     }
     // Create a new routes
-    mountRoutes() {
+    routes() {
         const router = express.Router();
         // Contact form
         router.post('/contact', (req, res) => {
@@ -54,10 +62,7 @@ class App {
         });
         // Default route
         router.get('/', (req, res) => {
-            /*res.json({
-              message: 'Serviceman!'
-            });*/
-            res.send('Serviceman!');
+            res.send('Serviceman API!');
         });
         this.express.use('/', router);
     }
