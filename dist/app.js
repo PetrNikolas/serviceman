@@ -7,8 +7,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-//import * as ses from 'nodemailer-ses-transport';
-const sesTransport = require('nodemailer-ses-transport');
+const ses = require('nodemailer-ses-transport');
 //------------------------------------------------------------------------------
 // New Express server config
 //------------------------------------------------------------------------------
@@ -26,7 +25,7 @@ class App {
         // Contact form
         router.post('/contact', (req, res) => {
             // Options for mail
-            const transporter = nodemailer.createTransport(sesTransport({
+            const transporter = nodemailer.createTransport(ses({
                 accessKeyId: 'YOUR_AMAZON_KEY',
                 secretAccessKey: 'YOUR_AMAZON_SECRET_KEY',
                 region: 'YOUR_AMAZON_REGION'
