@@ -1,20 +1,20 @@
 //------------------------------------------------------------------------------
 // Import all packages
 //------------------------------------------------------------------------------
-import app from './app'
+import app from './app';
 
 
 //------------------------------------------------------------------------------
 // Start server
 //------------------------------------------------------------------------------
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
-app.listen(port, (err) => {  
-  // Error message  
+app.listen(port, (err: any) => {
+  // Error message
   if (err) {
-    return console.log(err)
+    return console.log(err);
   }
 
   // Success server running
-  return console.log(`Server running at https://127.0.0.1:${port}`)
-})
+  return console.log(`Server running at https://127.0.0.1:${port}`);
+});

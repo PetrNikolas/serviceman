@@ -7,7 +7,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-const sesTransport = require("nodemailer-ses-transport");
+//import * as ses from 'nodemailer-ses-transport';
+const sesTransport = require('nodemailer-ses-transport');
 //------------------------------------------------------------------------------
 // New Express server config
 //------------------------------------------------------------------------------
@@ -23,15 +24,14 @@ class App {
     mountRoutes() {
         const router = express.Router();
         // Contact form
-        router.post('/contact', function (req, res) {
-            // Options for mail  
-            let mailOpts, smtpTrans;
-            smtpTrans = nodemailer.createTransport(sesTransport({
-                accessKeyId: 'ENTER YOUR AWS ACCESS KEY ID',
-                secretAccessKey: 'ENTER YOUR AWS SECRET ACCESS KEY',
-                region: 'ENTER YOUR AWS REGION'
+        router.post('/contact', (req, res) => {
+            // Options for mail
+            const transporter = nodemailer.createTransport(sesTransport({
+                accessKeyId: 'YOUR_AMAZON_KEY',
+                secretAccessKey: 'YOUR_AMAZON_SECRET_KEY',
+                region: 'YOUR_AMAZON_REGION'
             }));
-            mailOpts = {
+            const mailOpts = {
                 from: 'ENTER EMAIL ADRESS',
                 to: 'ENTER YOUR EMAIL ADRESS',
                 subject: 'Website contact form',
@@ -43,7 +43,7 @@ class App {
                     '</div></body></html>'
             };
             // Sending mails
-            smtpTrans.sendMail(mailOpts, function (error, response) {
+            transporter.sendMail(mailOpts, (error, response) => {
                 //Email not sent
                 if (error) {
                     res.json({ code: 'error', msg: 'Error occured, message not sent. ' + error });
@@ -55,10 +55,10 @@ class App {
         });
         // Default route
         router.get('/', (req, res) => {
-            res.json({
-                message: 'Serviceman!'
-            });
-            //res.send('Serviceman!')
+            /*res.json({
+              message: 'Serviceman!'
+            });*/
+            res.send('Serviceman!');
         });
         this.express.use('/', router);
     }

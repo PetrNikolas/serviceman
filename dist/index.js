@@ -9,7 +9,7 @@ const app_1 = require("./app");
 //------------------------------------------------------------------------------
 const port = process.env.PORT || 3000;
 app_1.default.listen(port, (err) => {
-    // Error message  
+    // Error message
     if (err) {
         return console.log(err);
     }
