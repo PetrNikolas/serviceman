@@ -6,7 +6,6 @@ Node.js services for your REST API jobs (send mails) written in TypeScript.
 * [Node.js v6 and +](https://nodejs.org/en/download/),
 * [NPM](https://docs.npmjs.com/getting-started/what-is-npm).
 
-### Maybe you need install these dependencies with -g
 1. Run `npm install -g typescript`.
 2. Run `npm install typescript-eslint-parser -g`.
 3. Run `npm i eslint-config-airbnb-base -g`.
@@ -19,7 +18,8 @@ Node.js services for your REST API jobs (send mails) written in TypeScript.
 4. Run `npm start` to build the project and visit http://localhost:3000/.
 
 ## Lint 
-1. Run `npm run lint` to lint you code.
+1. Run `npm run lint` to lint your code with ESLint.
+2. Run `npm run tslint` to lint your code with TSLint.
 
 ## Tests
 1. Run `npm run mocha` for Mocha tests.
