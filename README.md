@@ -1,5 +1,5 @@
 # Serviceman
-Node.js services for your REST API jobs (send mails) written in TypeScript.
+Node.js services for sending mails as REST API written in TypeScript.
 
 ## Prerequisites and Libs
 * [TypeScript](https://www.typescriptlang.org/index.html#download-links),
