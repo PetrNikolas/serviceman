@@ -14,7 +14,7 @@ Node.js services for sending mails as REST API written in TypeScript.
 ## Project Setup
 1. Clone this repo.
 2. Run `npm install` to install dependencies.
-3. Run `npm run compile-ts` to compile TypeScript files to JavaScript.
+3. Run `npm run build` to compile TypeScript files to JavaScript.
 4. Run `npm start` to build the project and visit http://localhost:3000/.
 
 ## Lint 
