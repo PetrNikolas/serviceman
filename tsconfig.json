@@ -5,7 +5,8 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "skipLibCheck": true
   },
   "files": [
     "./node_modules/@types/mocha/index.d.ts",
@@ -20,6 +21,7 @@
     "./node_modules/@types/nodemailer-smtp-transport/index.d.ts",
     "./node_modules/@types/serve-static/index.d.ts"
   ],
+  "types" : ["mocha", "jest"],
   "include": [
     "src/**/*.ts"
   ],
